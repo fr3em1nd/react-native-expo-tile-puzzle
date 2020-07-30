@@ -63,29 +63,18 @@ function shuffle(arr) {
   }
   return arr;
 };
- 
- 
-
-  useEffect(() => {
-    // Update the document title using the browser API
-
-    if (moveDone==0)
-  {  
-    setpuzzleSequence(shuffle(solveThis));
-    setmoveDone(1);
-  }
-  });
-
-
-
-
- 
+useEffect(() => {
+if (moveDone==0)
+{  
+setpuzzleSequence(shuffle(solveThis));
+setmoveDone(1);
+}
+});
 
   return (
     <View style={styles.container}>
  
       {puzzleSequence.map((number, i) => {
-
         if (i == blankState.index) {
           return <Text style={styles.puzzleBoxesHidden} index={i} onPress={() => moveTile(i, number)}></Text>
         }
