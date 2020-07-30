@@ -19,39 +19,50 @@ const TilePuzzle = () => {
 
   const [count, setCount] = useState(0);
   const [puzzleSequence, setpuzzleSequence] = useState([]);
-  const [blankState, setBlankState] = useState({index:8,value:''});
+  const [blankState, setBlankState] = useState({index:15,value:''});
   const [Refresh, setRefresh] = useState(0);
   const [gotSolved, setgotSolved] = useState(0);
  
-  const solveThis = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // 9 numbers to be solved.
+  const solveThis = [1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16]; // 9 numbers to be solved.
 
 
 function moveTile (tileID,tileContent) {
-if (blankState.index == tileID || (blankState.index == 0 && (tileID != 1 && tileID != 3)) || (blankState.index == 2 && (tileID != 1 && tileID != 5)) || (blankState.index == 6 && (tileID != 3 && tileID != 7)) || (blankState.index == 8 && (tileID != 5 && tileID != 7)) || (blankState.index == 1 && (tileID != 0 && tileID != 4 && tileID != 2)) || (blankState.index == 3 && (tileID != 0 && tileID != 4 && tileID != 6)) || (blankState.index == 5 && (tileID != 2 && tileID != 4 && tileID != 8)) || (blankState.index == 7 && (tileID != 6 && tileID != 4 && tileID != 8)) || (blankState.index == 4 && (tileID != 1 && tileID != 3 && tileID != 5 && tileID != 7)) ){
-  return ;
-} // very ugly i know .. :(
+    if (blankState.index == tileID || (blankState.index == 0 && (tileID != 1 && tileID != 4)) 
+      || (blankState.index == 3 && (tileID != 2 && tileID != 7))
+      || (blankState.index == 12 && (tileID != 8 && tileID != 13))
+      || (blankState.index == 15 && (tileID != 11 && tileID != 14))
+      || (blankState.index == 1 && (tileID != 0 && tileID != 2 && tileID != 5 ) )
+      || (blankState.index == 2 && (tileID != 1 && tileID != 3 && tileID != 6 ) )
+      || (blankState.index == 4 && (tileID != 0 && tileID != 5 && tileID != 8 ) )
+      || (blankState.index == 7 && (tileID != 3 && tileID != 6 && tileID != 11 ) )
+      || (blankState.index == 11 && (tileID != 7 && tileID != 10 && tileID != 15 ) )
+      || (blankState.index == 13 && (tileID != 9 && tileID != 12 && tileID != 14 ) )
+      || (blankState.index == 14 && (tileID != 10 && tileID != 13 && tileID != 15 ) )
+      || (blankState.index == 5 && (tileID != 1 && tileID != 4 && tileID != 6 && tileID != 9 ) )
+      || (blankState.index == 6 && (tileID != 2 && tileID != 5 && tileID != 7 && tileID != 10 ) )
+      || (blankState.index == 9 && (tileID != 5 && tileID != 8 && tileID != 10 && tileID != 13 ) )
+      || (blankState.index == 10 && (tileID != 6 && tileID != 9 && tileID != 11 && tileID != 14 ) )
+    ){
+    return ;
+  } // very ugly i know .. :(
+  // some elegant way is to map this         // moveTile(i, number);
 
-let newSequence = [];
-newSequence =  puzzleSequence;
-newSequence[blankState.index] = tileContent;
-setpuzzleSequence( newSequence); 
-setBlankState({ index:tileID,value: 0});
-let isSolved = 0;
-newSequence.map((number,i) => {
-if (number != i+1){
-isSolved++
-}
-
-}
-
-)
-console.log('solved:' + isSolved);
-
-if (isSolved ==1 ){
-Alert.alert('Congratulations, you solved the puzzle!');
-setgotSolved(1);
-}
-
+  let newSequence = [];
+  newSequence =  puzzleSequence;
+  newSequence[blankState.index] = tileContent;
+  setpuzzleSequence( newSequence); 
+  setBlankState({ index:tileID,value: 0});
+  let isSolved = 0;
+  newSequence.map((number,i) => {
+    if (number != i+1){
+      isSolved++
+    }
+  }
+  )
+  if (isSolved ==1 ){
+    Alert.alert('Congratulations, you solved the puzzle!');
+    setgotSolved(1);
+  }
 }
 
 function shuffle(arr) {
@@ -76,13 +87,10 @@ if (Refresh==0)
   return (
     <View style={styles.container}>
       <Button mode="text" style={styles.gameHeader} onPress={() => {
-        // moveTile(i, number);
-
         Alert.alert(
           'New Game',
           'Would you like to leave current game and start new?',
           [
-
             {
               text: 'Cancel',
               onPress: () => console.log('Cancel Pressed'),
@@ -92,13 +100,7 @@ if (Refresh==0)
           ],
           { cancelable: false }
         );
-
-
-
-
-
       }
-
       }>Simple Tile Puzzle</Button>
       {puzzleSequence.map((number, i) => {
         if (i == blankState.index) {
@@ -129,11 +131,6 @@ if (Refresh==0)
           ],
           { cancelable: false }
         );
-
-
-
- 
-
       }
 
       }>New Game</Button>
@@ -154,9 +151,9 @@ const styles = StyleSheet.create({
   },
   
   puzzleBoxes: {
-    width: windowWidth * .30, height: windowHeight * .20, backgroundColor: dynamicColor(), margin:5,
+    width: windowWidth * .217, height: windowHeight * .10, backgroundColor: dynamicColor(), margin:5,
     padding: 30,
-    fontSize: 50,
+    fontSize: 20,
  
     alignContent: 'center',
     textAlign: 'center',
@@ -168,9 +165,9 @@ const styles = StyleSheet.create({
   },
 
   puzzleBoxesHidden: {
-    width: windowWidth * .30, height: windowHeight * .20,   margin: 5,
-    padding: 40,
-    fontSize: 50,
+    width: windowWidth * .217, height: windowHeight * .10,   margin: 5,
+    padding: 30,
+    fontSize: 20,
     backgroundColor:'grey',
 
     alignContent: 'center',
