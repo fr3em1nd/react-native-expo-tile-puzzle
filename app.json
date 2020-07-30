@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "React Native Expo Tile Puzzle",
+    "slug": "react-native-expo-tile-puzzle",
+    "privacy": "public",
+    "sdkVersion": "38.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+ 
+    "splash": {
+ 
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "description": "React Native Expo Title Title by Solomon Monotilla"
+  }
+}
